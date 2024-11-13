@@ -1,27 +1,15 @@
 import { useState } from "react";
 
-import { Modal, Button } from "react-bootstrap";
 import Product from "./components/Product";
+import AddProduct from "./components/AddProduct";
 
-import products from "./data/products.json";
+import initial_products from "./data/products.json";
 
 function App() {
 
-  // const [openModalProduct, setOpenModalProduct] = useState(false);
-
-  // useState es una función que me permite crear una caja que permanecerá en el estado de mi componente:
-  const [modalProduct, setModalProduct] = useState(false);
-  // caja = Variable que almacenerá el valor del estado.
-  // actualizarCaja = Función que permite actualizar el valor .
-
+  const [products, setProducts] = useState(initial_products);
   
-
-
-
-	const handleClose = () => {
-		console.log("closed!");
-    setModalProduct(false);
-	};
+  const [modalProduct, setModalProduct] = useState(false);
 
   const abrirModal = () => {
     setModalProduct(true);
@@ -59,23 +47,10 @@ function App() {
 					<div id="review-list"></div>
 				</section>
 			</main>
-
-			<Modal show={modalProduct} onHide={handleClose}>
-				<Modal.Header>
-					<Modal.Title>Nuevo Producto</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-
-        </Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={() => setModalProduct(false)}>
-						Cerrar
-					</Button>
-					<Button variant="primary" onClick={handleClose}>
-						Agregar
-					</Button>
-				</Modal.Footer>
-			</Modal>
+      {/* App.jsx es el Parent Component */}
+      {/* AddProduct.jsx es el Child Component */}
+      <AddProduct modalProduct={modalProduct} setModalProduct={setModalProduct} products={products} chancarListaDeProductos={setProducts} />
+			
 		</>
 	);
 }
